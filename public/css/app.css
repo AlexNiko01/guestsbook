@@ -1,0 +1,79 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito);.md-card {
+  width: 96%;
+  margin: 25px auto;
+  vertical-align: top;
+}
+
+.page-container-section {
+  padding-top: 100px;
+}
+
+.page-container-section + .page-container-section {
+  margin-top: 32px;
+}
+
+.main-header {
+  background-color: #fff;
+  margin: auto;
+  max-width: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 30;
+  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) 0.1s;
+  will-change: box-shadow, max-width, background-color;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.page-container {
+  margin-top: 200px;
+}
+
+.main-container {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.form-wrapper {
+  background-color: #fff;
+  background-color: var(--md-theme-demo-light-background, #fff);
+  color: rgba(0, 0, 0, 0.87);
+  color: var(--md-theme-demo-light-text-primary-on-background, rgba(0, 0, 0, 0.87));
+  width: 96%;
+  margin: 25px auto;
+  padding: 20px;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+html body .md-theme-default a:not(.md-button) {
+  color: rgba(0, 0, 0, 0.85);
+  color: var(--md-theme-default-primary-on-background, rgba(0, 0, 0, 0.85));
+}
+
+html body .md-theme-default a:not(.md-button):hover {
+  color: rgba(0, 0, 0, 0.82);
+  color: var(--md-theme-default-primary-on-background, rgba(0, 0, 0, 0.82));
+  text-decoration: none;
+}
+
+html body .md-field.md-theme-default.md-focused.md-has-textarea:not(.md-autogrow):before {
+  border-color: rgba(0, 0, 0, 0.85);
+  border-color: var(--md-theme-default-primary, rgba(0, 0, 0, 0.85));
+}
+
+html body .md-field.md-theme-default.md-focused label {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+html body .md-layout {
+  justify-content: flex-end;
+}
+
+:root {
+  --md-theme-default-primary: rgba(0, 0, 0, 0.85) !important;
+  -theme-default-primary: rgba(0, 0, 0, 0.85) !important;
+  --md-theme-default-accent: #ff5252;
+  --md-theme-default-theme: light;
+}
+
