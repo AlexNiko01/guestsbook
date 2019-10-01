@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePostRequest;
 use App\Http\Resources\PostResource;
 use App\Post;
-use Auth;
 
 class PostController extends Controller
 {
@@ -27,6 +25,6 @@ class PostController extends Controller
      */
     public function show(int $id)
     {
-        return new PostResource(Post::with('comments')->findOrFail($id));
+        return new PostResource(Post::findOrFail($id));
     }
 }

@@ -22,25 +22,22 @@
         },
         components: {InfiniteLoading},
         mounted() {
-            this.infiniteLoadPosts();
         },
         methods: {
             infiniteLoadPosts($state) {
                 this.loadPosts().then(data => {
-                    console.log(data);
+                    console.log(!data.length);
                     if (!data.length) {
                         $state.complete();
                     }
                     if (this.posts.length) {
                         this.page++;
                         this.posts.push(...data);
-                        console.log(data, data.length);
                         $state.loaded();
                     } else {
                         this.posts = data;
                     }
                 });
-
             },
             loadPosts() {
                 return this.$client.get(url, {params: {page: this.page}}).then((response) => {
@@ -49,12 +46,10 @@
                     .catch((error) => console.log(error.response.data))
             },
             deletePost(postId) {
-                this.posts.forEach(function (el, index) {
-                    if (el.id === postId) {
-                        delete this.posts[index];
-                    }
+                this.posts = this.posts.filter(function (el) {
+                    return el.id !== postId
                 });
-                this.posts = [...this.posts];
+
             }
         }
     }

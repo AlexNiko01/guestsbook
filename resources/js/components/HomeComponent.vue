@@ -1,8 +1,8 @@
 <template>
     <div class="page-container">
         <div class="main-container centered">
-            <post-form-component @created="postCreated($event)"></post-form-component>
-            <post-component v-for="(post, key) in posts" :key="key" :post="post"></post-component>
+            <post-form-component @created="postCreated($event)" :heading="heading"></post-form-component>
+            <post-component @deleted="deletePost(post.id)"  v-for="(post, key) in posts" :key="key" :post="post"></post-component>
             <infinite-loading @infinite="infiniteLoadPosts"></infinite-loading>
         </div>
     </div>
@@ -12,19 +12,17 @@
     import InfiniteLoading from 'vue-infinite-loading';
     import PostFormComponent from "./PostFormComponent";
 
-    const url = '/list';
+    const postsListUrl = '/list';
 
     export default {
         data: () => {
             return {
                 posts: {},
                 page: 1,
+                heading: 'Leave your comment here ...'
             }
         },
         components: {PostFormComponent, InfiniteLoading},
-        mounted() {
-            this.infiniteLoadPosts();
-        },
         methods: {
             infiniteLoadPosts($state) {
                 this.loadPosts().then(data => {
@@ -43,7 +41,7 @@
 
             },
             loadPosts() {
-                return this.$client.get(url, {params: {page: this.page}}).then((response) => {
+                return this.$client.get(postsListUrl, {params: {page: this.page}}).then((response) => {
                     return response.data.data;
                 })
                     .catch((error) => console.log(error.response.data))
@@ -53,6 +51,12 @@
                     createdPost,
                     ...this.posts
                 ]
+            },
+            deletePost(postId) {
+                this.posts = this.posts.filter(function (el) {
+                    return el.id !== postId
+                });
+
             }
         }
     }

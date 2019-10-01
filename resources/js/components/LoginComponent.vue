@@ -2,7 +2,7 @@
     <div class="page-container">
         <div class="main-container centered">
             <div class="form-wrapper">
-                <form novalidate class="md-layout" @submit.prevent="submit">
+                <form novalidate class="md-layout" @submit.prevent="login()">
 
                     <md-field :class="{ 'md-invalid': $v.form.email.$error }">
                         <label class="mr-2 font-bold text-grey">Email</label>
@@ -27,7 +27,7 @@
                     <md-field
                             :class="{ 'md-invalid': $v.form.password.$error }">
                         <label class="mr-2 font-bold text-grey">Password</label>
-                        <md-input type="text" class="input" v-model="form.password"></md-input>
+                        <md-input type="password" class="input" v-model="form.password"></md-input>
                         <div v-if="!$v.form.password.required && $v.form.password.$dirty">
                             <span class="md-error">Password is required</span>
                         </div>
@@ -75,16 +75,13 @@
         },
 
         methods: {
-            submit() {
+            login: function () {
                 this.$v.form.$touch();
                 if (this.$v.form.$error) {
                     return;
                 }
                 this.$auth.login(this.form);
             }
-        },
-        mounted() {
-
         },
     }
 </script>

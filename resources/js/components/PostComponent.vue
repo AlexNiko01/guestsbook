@@ -9,7 +9,8 @@
                 {{post.content}}
             </md-card-content>
             <md-card-actions>
-                <md-button @click.prevent="viewPost(post.id)">View post page</md-button>
+                <md-button @click.prevent="viewPost(post.id)">View</md-button>
+                <md-button v-if="$auth.isLoggedIn()" @click.prevent="updatePost(post.id)">Update</md-button>
                 <md-button v-if="$auth.isLoggedIn()" @click.prevent="deletePost(post.id)">Delete</md-button>
             </md-card-actions>
         </md-ripple>
@@ -24,15 +25,24 @@
         mounted() {
         },
         methods: {
-            viewPost(postId) {
-                this.$router.push({name: 'single-post', params: {id: postId}});
+            viewPost: function (postId) {
+                this.$router.push({name: 'view-post', params: {id: postId}});
             },
-            deletePost(postId) {
+            deletePost: function (postId) {
+                console.log(postId);
                 return this.$client.delete('/user/posts/' + postId).then((response) => {
-                    this.$emit('deleted');
-                    return response.data.data;
+                    if(response.status === 200){
+                        this.$emit('deleted');
+                    }
                 })
                     .catch((error) => console.log(error.response.data))
+            },
+            updatePost: function (postId) {
+                console.log(postId);
+                this.$router.push({name: 'update-post', params: {id: postId}});
+            },
+            postBelongToUser(){
+
             }
         }
     }

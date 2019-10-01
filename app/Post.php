@@ -15,7 +15,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Comment[] $comments
  * @property-read int|null $comments_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post newQuery()
@@ -37,13 +36,6 @@ class Post extends Model
      */
     protected $fillable = ['title', 'content', 'user_id'];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
-    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

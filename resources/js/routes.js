@@ -3,7 +3,8 @@ import VueRouter from 'vue-router';
 
 import HomeComponent from './components/HomeComponent';
 import ProfileComponent from './components/ProfileComponent';
-import SinglePostComponent from './components/SinglePostComponent';
+import ViewPostComponent from './components/ViewPostComponent';
+import UpdatePostComponent from './components/UpdatePostComponent';
 import LoginComponent from "./components/LoginComponent";
 
 Vue.use(VueRouter);
@@ -21,9 +22,14 @@ const router = new VueRouter({
             component: ProfileComponent
         },
         {
-            path: '/single-post/:id',
-            name: 'single-post',
-            component: SinglePostComponent
+            path: '/view/post/:id',
+            name: 'view-post',
+            component: ViewPostComponent
+        },
+        {
+            path: '/update/post/:id',
+            name: 'update-post',
+            component: UpdatePostComponent
         },
         {
             path: '/login',

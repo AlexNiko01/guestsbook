@@ -11,8 +11,7 @@
 </template>
 
 <script>
-    const url = 'http://guestbook-api.dev.local/api/post/';
-    import Axios from "axios"
+    const url = '/post/';
 
     export default {
         data: () => {
@@ -30,12 +29,10 @@
             setProps() {
                 this.loadPost().then(data => {
                     this.post = data;
-                    // console.log(this.data.post);
                 });
-            }
-            ,
+            },
             loadPost() {
-                return Axios.get(url + this.id, {params: {id: this.id}}).then((response) => {
+                return this.$client.get(url + this.id).then((response) => {
                     return response.data.data;
                 })
                     .catch((error) => console.log(error.response.data))
