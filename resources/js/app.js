@@ -1,3 +1,5 @@
+import Axios from "axios";
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -43,11 +45,13 @@ Vue.use(Vuelidate);
 Vue.component('home-component', require('./components/HomeComponent.vue').default);
 Vue.component('post-component', require('./components/PostComponent.vue').default);
 Vue.component('post-form-component', require('./components/PostFormComponent.vue').default);
+Vue.component('form-component', require('./components/FormComponent.vue').default);
 Vue.component('menu-component', require('./components/MenuComponent.vue').default);
-
+Vue.component('signup-component', require('./components/SignupComponent.vue').default);
 Vue.component('view-post-component', require('./components/ViewPostComponent.vue').default);
 
 const app = new Vue({
     el: '#app',
-    router: Routes
+    router: Routes,
+
 });

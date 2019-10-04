@@ -55,7 +55,6 @@
                 this.form.title = post.title;
                 this.form.content = post.content;
             })
-
         },
         validations: {
             form: {
@@ -78,10 +77,19 @@
                     return window.location.href = 'login';
                 }
                 if (this.$route.params.id) {
-                    this.updatePost(this.$route.params.id, this.form);
+                    this.updatePost(this.$route.params.id, this.form).then(() => {
+                        this.resetForm();
+                    });
                 } else {
-                    this.createPost(this.form);
+                    this.createPost(this.form).then(() => {
+                        this.resetForm();
+                    });
                 }
+            },
+            resetForm: function () {
+                this.$v.form.$reset();
+                this.form.title = '';
+                this.form.content = '';
             },
             createPost: function (data) {
                 return this.$client.post(createPostUrl, data).then((response) => {

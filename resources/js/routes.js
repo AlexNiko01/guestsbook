@@ -6,6 +6,7 @@ import ProfileComponent from './components/ProfileComponent';
 import ViewPostComponent from './components/ViewPostComponent';
 import UpdatePostComponent from './components/UpdatePostComponent';
 import LoginComponent from "./components/LoginComponent";
+import SignupComponent from "./components/SignupComponent";
 
 Vue.use(VueRouter);
 const router = new VueRouter({
@@ -35,6 +36,11 @@ const router = new VueRouter({
             path: '/login',
             name: 'login',
             component: LoginComponent
+        },
+        {
+            path: '/signup',
+            name: 'signup',
+            component: SignupComponent
         }
     ]
 });

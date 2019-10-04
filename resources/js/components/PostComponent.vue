@@ -10,8 +10,8 @@
             </md-card-content>
             <md-card-actions>
                 <md-button @click.prevent="viewPost(post.id)">View</md-button>
-                <md-button v-if="$auth.isLoggedIn()" @click.prevent="updatePost(post.id)">Update</md-button>
-                <md-button v-if="$auth.isLoggedIn()" @click.prevent="deletePost(post.id)">Delete</md-button>
+                <md-button v-if="$auth.isLoggedIn() && post.user.id===$auth.userId" @click.prevent="updatePost(post.id)">Update</md-button>
+                <md-button v-if="$auth.isLoggedIn() && post.user.id===$auth.userId" @click.prevent="deletePost(post.id)">Delete</md-button>
             </md-card-actions>
         </md-ripple>
     </md-card>
@@ -21,8 +21,10 @@
     export default {
         props: {
             post: {},
+            userId: null
         },
         mounted() {
+            console.log(this.post);
         },
         methods: {
             viewPost: function (postId) {
@@ -31,7 +33,7 @@
             deletePost: function (postId) {
                 console.log(postId);
                 return this.$client.delete('/user/posts/' + postId).then((response) => {
-                    if(response.status === 200){
+                    if (response.status === 200) {
                         this.$emit('deleted');
                     }
                 })
@@ -41,7 +43,7 @@
                 console.log(postId);
                 this.$router.push({name: 'update-post', params: {id: postId}});
             },
-            postBelongToUser(){
+            postBelongToUser() {
 
             }
         }

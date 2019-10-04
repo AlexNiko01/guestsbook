@@ -23,6 +23,12 @@
                         <router-link to="/login">Login</router-link>
                     </md-button>
                 </md-menu>
+                <md-menu v-if="!$auth.isLoggedIn()"
+                         md-direction="bottom-end">
+                    <md-button md-menu-trigger>
+                        <router-link to="/signup">Signup</router-link>
+                    </md-button>
+                </md-menu>
                 <md-menu v-if="$auth.isLoggedIn()" md-direction="bottom-end">
                     <md-button md-menu-trigger>
                         <a @click.prevent="$auth.logout()">Logout</a>
